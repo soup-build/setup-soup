@@ -1,6 +1,6 @@
 {
   "name": "Setup-Soup",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "lib/index.js",
   "private": true,
@@ -14,28 +14,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SoupBuild/Setup-Soup.git"
+    "url": "git+https://github.com/soup-build/setup-soup.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SoupBuild/Setup-Soup/issues"
+    "url": "https://github.com/soup-build/setup-soup/issues"
   },
-  "homepage": "https://github.com/SoupBuild/Setup-Soup#readme",
+  "homepage": "https://github.com/soup-build/setup-soup#readme",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1",
+    "@actions/core": "^2.0.1",
+    "@actions/github": "^6.0.1",
     "@actions/tool-cache": "^2.0.1",
-    "typed-rest-client": "^1.8.9"
+    "typed-rest-client": "^2.1.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0",
-    "@types/node": "^18.15.11",
-    "@vercel/ncc": "^0.36.1",
-    "eslint": "^8.38.0",
-    "prettier": "^2.8.7",
-    "typescript": "^4.9.3"
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^22.9.0",
+    "@vercel/ncc": "^0.38.4",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
   }
 }

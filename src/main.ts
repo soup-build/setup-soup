@@ -24,7 +24,7 @@ async function getLatestRelease(): Promise<Release> {
   };
 
   const GitHubApiUrl = "https://api.github.com";
-  const soupRepoPath = "SoupBuild/Soup";
+  const soupRepoPath = "soup-build/soup";
   const url = `${GitHubApiUrl}/repos/${soupRepoPath}/releases/latest`;
 
   const httpClient: thc.HttpClient = new thc.HttpClient("github-api");
@@ -46,7 +46,7 @@ async function getTagRelease(tag: string): Promise<Release> {
   };
 
   const GitHubApiUrl = "https://api.github.com";
-  const soupRepoPath = "SoupBuild/Soup";
+  const soupRepoPath = "soup-build/soup";
   const url = `${GitHubApiUrl}/repos/${soupRepoPath}/releases/tags/${tag}`;
 
   const httpClient: thc.HttpClient = new thc.HttpClient("github-api");
@@ -78,7 +78,6 @@ export async function run(): Promise<void> {
 
     console.log(`Using Release: ${activeRelease.name}`);
 
-    const activeVersion = activeRelease.tag_name.substring(1);
     let system = "";
     let archiveExtension = "";
     switch (os.platform()) {
@@ -95,7 +94,7 @@ export async function run(): Promise<void> {
     }
 
     const architecture = os.arch();
-    const archiveFileName = `soup-build-${activeVersion}-${system}-${architecture}.${archiveExtension}`;
+    const archiveFileName = `soup-build-${system}-${architecture}.${archiveExtension}`;
     console.log(`Using Archive: ${archiveFileName}`);
 
     const soupAsset = activeRelease.assets.find((asset) => {
