@@ -12,5 +12,5 @@ outputs:
   soupPath:
     description: 'The resulting location of the Soup installation'
 runs:
-  using: 'node22'
+  using: 'node24'
   main: 'dist/index.js'
