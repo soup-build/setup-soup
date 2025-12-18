@@ -3,6 +3,7 @@ import * as tc from "@actions/tool-cache";
 import * as thc from "typed-rest-client/HttpClient";
 import { IHeaders } from "typed-rest-client/Interfaces";
 import os from "os";
+import path from "path";
 
 interface Asset {
   name: string;
@@ -111,14 +112,18 @@ export async function run(): Promise<void> {
     console.log(`Extracting Archive: ${soupArchivePath}`);
     let soupPath = "";
     switch (archiveExtension) {
-      case "zip":
-        soupPath = await tc.extractZip(soupArchivePath, "bin");
+      case "zip": {
+        soupPath = await tc.extractZip(soupArchivePath, "soup");
         break;
-      case "tar.gz":
-        soupPath = await tc.extractTar(soupArchivePath, "bin");
+      }
+      case "tar.gz": {
+        const targetPath = await tc.extractTar(soupArchivePath, "soup");
+        soupPath = path.join(targetPath, 'bin');
         break;
-      default:
+      }
+      default: {
         core.error(`Unknown archive extension: ${archiveExtension}`);
+      }
     }
 
     console.log(`soupPath: ${soupPath}`);
