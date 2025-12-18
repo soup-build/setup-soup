@@ -13,6 +13,6 @@ This action prints downloads and registers the specified Soup CLI version for ea
 The registered path to the Soup executable.
 
 ## Example usage
-uses: soupbuild/setup-soup@v1
+uses: soup-build/setup-soup@v1
 with:
   version: 'latest'
