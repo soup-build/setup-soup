@@ -118,7 +118,7 @@ export async function run(): Promise<void> {
       }
       case "tar.gz": {
         const targetPath = await tc.extractTar(soupArchivePath, "soup");
-        soupPath = path.join(targetPath, 'bin');
+        soupPath = path.join(targetPath, "bin");
         break;
       }
       default: {

@@ -57,6 +57,7 @@ const core = __importStar(__nccwpck_require__(7484));
 const tc = __importStar(__nccwpck_require__(3472));
 const thc = __importStar(__nccwpck_require__(6184));
 const os_1 = __importDefault(__nccwpck_require__(857));
+const path_1 = __importDefault(__nccwpck_require__(6928));
 function getLatestRelease() {
     return __awaiter(this, void 0, void 0, function* () {
         const headers = {
@@ -138,14 +139,18 @@ function run() {
             console.log(`Extracting Archive: ${soupArchivePath}`);
             let soupPath = "";
             switch (archiveExtension) {
-                case "zip":
-                    soupPath = yield tc.extractZip(soupArchivePath, "bin");
+                case "zip": {
+                    soupPath = yield tc.extractZip(soupArchivePath, "soup");
                     break;
-                case "tar.gz":
-                    soupPath = yield tc.extractTar(soupArchivePath, "bin");
+                }
+                case "tar.gz": {
+                    const targetPath = yield tc.extractTar(soupArchivePath, "soup");
+                    soupPath = path_1.default.join(targetPath, "bin");
                     break;
-                default:
+                }
+                default: {
                     core.error(`Unknown archive extension: ${archiveExtension}`);
+                }
             }
             console.log(`soupPath: ${soupPath}`);
             core.addPath(soupPath);
