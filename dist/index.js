@@ -63,7 +63,7 @@ function getLatestRelease() {
             Accept: "application/vnd.github.v3+json",
         };
         const GitHubApiUrl = "https://api.github.com";
-        const soupRepoPath = "SoupBuild/Soup";
+        const soupRepoPath = "soup-build/soup";
         const url = `${GitHubApiUrl}/repos/${soupRepoPath}/releases/latest`;
         const httpClient = new thc.HttpClient("github-api");
         const response = yield httpClient.get(url, headers);
@@ -81,7 +81,7 @@ function getTagRelease(tag) {
             Accept: "application/vnd.github.v3+json",
         };
         const GitHubApiUrl = "https://api.github.com";
-        const soupRepoPath = "SoupBuild/Soup";
+        const soupRepoPath = "soup-build/soup";
         const url = `${GitHubApiUrl}/repos/${soupRepoPath}/releases/tags/${tag}`;
         const httpClient = new thc.HttpClient("github-api");
         const response = yield httpClient.get(url, headers);
@@ -109,7 +109,6 @@ function run() {
                 activeRelease = yield getTagRelease(version);
             }
             console.log(`Using Release: ${activeRelease.name}`);
-            const activeVersion = activeRelease.tag_name.substring(1);
             let system = "";
             let archiveExtension = "";
             switch (os_1.default.platform()) {
@@ -125,7 +124,7 @@ function run() {
                     core.error(`Unknown host operating system: ${os_1.default.platform()}`);
             }
             const architecture = os_1.default.arch();
-            const archiveFileName = `soup-build-${activeVersion}-${system}-${architecture}.${archiveExtension}`;
+            const archiveFileName = `soup-build-${system}-${architecture}.${archiveExtension}`;
             console.log(`Using Archive: ${archiveFileName}`);
             const soupAsset = activeRelease.assets.find((asset) => {
                 return asset.name == archiveFileName;
